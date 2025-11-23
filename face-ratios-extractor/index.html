@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>Facial Harmony Analyzer</title>
+<style>
+html, body {margin:0;padding:0;font-family:Arial;width:100%;background:#f2f4f7;}
+.container{display:flex;flex-direction:column;align-items:center;padding:15px;min-height:100vh;}
+.upload-section{width:100%;text-align:center;margin-bottom:20px;}
+.upload-section input[type=file]{padding:8px;width:50%;max-width:300px;}
+.upload-section button{padding:10px 20px;margin-left:8px;background:#4a90e2;color:white;border:none;border-radius:8px;cursor:pointer;font-size:16px;}
+.upload-section button:hover{background:#357bd8;}
+.results-row{display:flex;flex-direction:row;gap:15px;width:100%;justify-content:center;align-items:flex-start;flex-wrap:wrap;}
+.results-row .section{flex:1;max-width:40%;text-align:center;}
+.results-row .section img{max-width:100%;max-height:300px;border-radius:10px;object-fit:contain;box-shadow:0 2px 10px rgba(0,0,0,0.2);}
+.description-section{width:90%;margin-top:20px;background:#f7f9fc;padding:15px;border-radius:12px;text-align:left;}
+.description-section ul{list-style:none;padding:0;margin:0;}
+.score{font-size:24px;font-weight:bold;color:#4a90e2;margin-top:8px;}
+.chart-row img{max-width:100%;max-height:250px;border-radius:12px;object-fit:contain;box-shadow:0 2px 10px rgba(0,0,0,0.2);}
+@media(max-width:900px){.results-row{flex-direction:column;gap:15px;align-items:center;}.results-row .section{max-width:90%;}.upload-section input[type=file]{width:80%;}}
+</style>
+</head>
+<body>
+<div class="container">
+  <div class="upload-section">
+    <h2>Upload a Face Image</h2>
+    <form action="/upload" method="post" enctype="multipart/form-data">
+      <input type="file" name="image" required>
+      <button type="submit">Analyze</button>
+    </form>
+  </div>
+
+  {% if image_data %}
+  <div class="results-row">
+    <div class="section">
+      <h3>Processed Face</h3>
+      <img src="data:image/jpeg;base64,{{ image_data }}">
+    </div>
+    <div class="section">
+      <h3>Artistic Ratio Chart</h3>
+      <img src="{{ chart_data }}">
+    </div>
+  </div>
+
+  <div class="description-section">
+    <h3>Ratios</h3>
+    <ul>
+      {% for k, v in ratios.items() %}
+      <li><b>{{ k }}:</b> {{ v }}</li>
+      {% endfor %}
+    </ul>
+    <h3>Artistic Harmony Score</h3>
+    <div class="score">{{ score }}/100</div>
+    <h3>Golden Ratio Score</h3>
+    <div class="score">{{ golden_score }}/100</div>
+    <h3>Golden Ratio (φ = {{ phi }})</h3>
+  </div>
+  {% endif %}
+</div>
+</body>
+</html>
