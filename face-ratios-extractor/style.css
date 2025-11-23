@@ -1,0 +1,117 @@
+
+html, body {
+    margin: 0;
+    padding: 0;
+    width: 100%;
+    font-family: Arial, sans-serif;
+    background: #f2f4f7;
+}
+
+.container {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    padding: 15px;
+    box-sizing: border-box;
+    min-height: 100vh;
+}
+
+/* Upload Section */
+.upload-section {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.upload-section input[type=file] {
+    padding: 8px;
+    width: 50%;
+    max-width: 300px;
+}
+
+.upload-section button {
+    padding: 10px 20px;
+    margin-left: 8px;
+    background: #4a90e2;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    cursor: pointer;
+    font-size: 16px;
+}
+
+.upload-section button:hover {
+    background: #357bd8;
+}
+
+/* Results Row: image left, chart right */
+.results-row {
+    display: flex;
+    flex-direction: row;
+    gap: 15px; /* کمتر شد */
+    width: 100%;
+    justify-content: center;
+    align-items: flex-start;
+    flex-wrap: wrap;
+}
+
+.results-row .section {
+    flex: 1;
+    max-width: 40%; /* کمتر شد */
+    text-align: center;
+}
+
+.results-row .section img {
+    max-width: 100%;
+    max-height: 300px; /* محدودیت ارتفاع */
+    border-radius: 10px;
+    object-fit: contain;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Description / Ratios / Score below results */
+.description-section {
+    width: 90%;
+    margin-top: 20px; /* کمتر شد */
+    background: #f7f9fc;
+    padding: 15px; /* کمتر شد */
+    border-radius: 12px;
+    text-align: left;
+}
+
+.description-section ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.score {
+    font-size: 24px; /* کمی کوچکتر */
+    font-weight: bold;
+    color: #4a90e2;
+    margin-top: 8px; /* کمتر شد */
+}
+
+/* Chart */
+.chart-row img {
+    max-width: 100%;
+    max-height: 250px; /* کوچک‌تر شد */
+    border-radius: 12px;
+    object-fit: contain;
+    box-shadow: 0 2px 10px rgba(0,0,0,0.2);
+}
+
+/* Responsive adjustments */
+@media (max-width: 900px) {
+    .results-row {
+        flex-direction: column;
+        gap: 15px;
+        align-items: center;
+    }
+    .results-row .section {
+        max-width: 90%;
+    }
+    .upload-section input[type=file] {
+        width: 80%;
+    }
+}
